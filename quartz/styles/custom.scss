@@ -1,3 +1,15 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+p,
+ul,
+text,
+a,
+tr,
+td,
+li,
+ol,
+ul,
+.katex,
+.math {
+    overflow-wrap: normal;
+}
