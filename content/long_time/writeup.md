@@ -4,19 +4,15 @@ draft: false
 tags: []
 date: 2024-06-03
 ---
-```
-Автор: Inssurg3nt
-Один из жителей, наплевав на все ограничения, запустил этот скрипт в далеком 1987 году, когда переехал в город-Z, и вот наконец-то он отработал и выдал нам результат! Правда, он забыл добавить вывод ключа...
-```
+> Автор: Inssurg3nt \
+> Один из жителей, наплевав на все ограничения, запустил этот скрипт в далеком 1987 году, когда переехал в город-Z, и вот наконец-то он отработал и выдал нам результат! Правда, он забыл добавить вывод ключа...
 
-```
-Author: Inssurg3nt
-One of the residents, ignoring all the restrictions, ran this script back in 1987, when he moved to city Z, and finally it completed execution and displayed the result! However, he forgot to display the key...
-```
-Task files: [`give`](./give/)
-Solve script: [`solve.py`](./solve.py)
+> Author: Inssurg3nt \
+> One of the residents, ignoring all the restrictions, ran this script back in 1987, when he moved to city Z, and finally it completed execution and displayed the result! However, he forgot to display the key...
+Task files: [`give`](https://github.com/maximxlss/writeups/tree/v4/content/long_time/give)
+Solve script: [`solve.py`](https://github.com/maximxlss/writeups/blob/v4/content/long_time/solve.py)
 ### Truly a long time
-The task contains the script that supposedly completed execution since 1987. It contains a VERY inefficient implementation of a linear recurrence in $\mathbb{Z}_p$ (aka integers modulo a prime) that can barely compute itself at $n=32$, let alone the values used, which are around $2^{128}$ (yes, 37 years is not even close to being enough).
+The task contains the script that supposedly completed execution since 1987. It contains a VERY inefficient implementation of a linear recurrence in $\mathbb{Z}_p$ (aka integers modulo a prime) that can barely compute itself at $n=32$, let alone the values used, which are around $2^{128}$ (yes, 37 years is not even close to being enough). \
 The script is appropriately named `DH.py`, as it does do [Diffie-Hellman key exchange](https://brilliant.org/wiki/diffie-hellman-protocol/), except it uses a linear recurrence: both parties calculate the terms corresponding to their private keys, exchange those values and advance the recurrence starting at what they got from the other party. It's plain to see that this algorithm does generate a valid shared key.
 ### Cool, and...?
 Basically, we are Bob and we need to recover Alice's secret. This amounts to inverting the recurrence (calculating $n$), analogous to the discrete logarithm problem for classic DH. As we will see later down the line, this problem actually is equivalent to computing a certain discrete logarithm.
@@ -37,10 +33,10 @@ f(n)=c_1x_1^n+c_2x_2^n+\cdots+c_kx_k^n
 $$
 $c_i$ are dependent on the starting values of the recurrence.
 > [!NOTE] For example, Fibonacci:
-> Recurrence: $f(n)=f(n-1)+f(n-2)$
-> Characteristic polynomial: $p(x)=x^2-x-1;\ p(\phi)=0,\ p(\psi)=0$
-> Closed form: $f(n)=c_1\phi^n+c_2\psi^n$
-> As it turns out, for starting values $f(0)=0;\ f(1)=1$ we have $c_1=-c_2=\frac{1}{\sqrt{5}}$
+> Recurrence: $f(n)=f(n-1)+f(n-2)$ \
+> Characteristic polynomial: $p(x)=x^2-x-1;\ p(\phi)=0,\ p(\psi)=0$ \
+> Closed form: $f(n)=c_1\phi^n+c_2\psi^n$ \
+> As it turns out, for starting values $f(0)=0;\ f(1)=1$ we have $c_1=-c_2=\frac{1}{\sqrt{5}}$ \
 > So, in the end, we have: $f(n)=\frac{\phi^n-\psi^n}{\sqrt{5}}$
 ### Praise Sagemath
 Let's start by finding the roots:
@@ -54,8 +50,8 @@ roots = characteristic.roots()
 ```
 You should get $k$ roots, accounting for multiplicities.
 > [!NOTE] Lacking roots?
-> Sometimes[^1], you might not get the expected $k$ roots. There may even be no roots at all! That doesn't mean the recurrence is unsolvable. Instead, it makes it even more interesting :)
-> This situation is similar to the familiar reals $\mathbb{R}$. If we don't have enough roots, we just make it a bit more _complex_, switching over to an _extension field_ $\mathbb{C}$, aka $\mathbb{R}[i]$ ($\mathbb{R}$ _adjoint_ $i$).
+> Sometimes[^1], you might not get the expected $k$ roots. There may even be no roots at all! That doesn't mean the recurrence is unsolvable. Instead, it makes it even more interesting :) \
+> This situation is similar to the familiar reals $\mathbb{R}$. If we don't have enough roots, we just make it a bit more _complex_, switching over to an _extension field_ $\mathbb{C}$, aka $\mathbb{R}[i]$ ($\mathbb{R}$ _adjoint_ $i$). \
 > In the case of $\mathbb{Z}_p$ (or $GF(p)$, equivalently), the extension is $GF(p^n)$ (which is **not** integers modulo $p^n$ but something like a polynomial ring over $\mathbb{Z}_p$), and it can be automatically found by sagemath (as always):
 > ```Python
 > SF = characteristic.splitting_field("a")
@@ -121,7 +117,7 @@ $$
 $$
 f(n+d)=c_1x_1^dx_1^n+c_2x_2^dx_2^n+\cdots+c_kx_k^dx_k^n
 $$
-If we (similarly to lateralus!) focus on $x_i^n$, this turns into a linear system again. Except in lateralus, the resulting discrete log was in $\mathbb{Z}_{p^2}$, which allowed to calculate it efficiently.
+If we (similarly to lateralus!) focus on $x_i^n$, this turns into a linear system again. Except in lateralus, the resulting discrete log was in $\mathbb{Z}_{p^2}$, which allowed to calculate it efficiently. \
 This time, the problem is in $\mathbb{Z}_{p}$ (and $p-1$ isn't smooth), so it's practically unsolvable. So no luck, huh...
 ### Not so fast!
 Actually, if the coefficients were random, that would've been true. But in reality, I lied to you. In this task the coefficients are special: there is a double root for the characteristic polynomial. That makes the closed form a bit different (let $x_1$ be the double root):
@@ -156,7 +152,7 @@ $$
 $$
 f(n+d)=(c_1x_1^d+c_2dx_1^d)x_1^n+c_2x_1^dnx_1^n+\cdots+c_kx_{k-1}^dx_{k-1}^n
 $$
-See it? The variables are $x_i^n$ and a special one $nx_1^n$. So we bypass discrete logarithm entirely by solving this system and calculating $\frac{nx_1^n}{x_1^n}$ !
+See it? The variables are $x_i^n$ and a special one $nx_1^n$. So we bypass discrete logarithm entirely by solving this system and calculating $\frac{nx_1^n}{x_1^n}$ ! \
 
 Problem is, this _doesn't work at all_ for the values given...
 ### Please check your tasks...
@@ -164,10 +160,10 @@ The reason turns out to be that in process of constructing the output of the scr
 ```Python
 S_b.reverse()
 ```
-. . .
-Run [`solve_test.py`](./solve_test.py) to verify that the method works for a random $n$.
+. . . \
+Run [`solve_test.py`](https://github.com/maximxlss/writeups/blob/v4/content/long_time/solve_test.py) to verify that the method works for a random $n$.
 ### Anyway, how did it happen?
-I don't know. This probably was more reasonable for them, because their solution is very different. The proposed solution uses matrices all the way, as there is a way to express the recurrence as matrix multiplication, and the given values are a special case in which calculating the logarithm is easy. The corresponding math is [Linear Recurrences](https://gciruelos.com/linear-recurrences.html) and [Jordan normal form](https://en.wikipedia.org/wiki/Jordan_normal_form).
-There is definitely a deep connection between my solution and theirs, but I'm yet to think that through.
+I don't know. This probably was more reasonable for them, because their solution is very different. The proposed solution uses matrices all the way, as there is a way to express the recurrence as matrix multiplication, and the given values are a special case in which calculating the logarithm is easy. The corresponding math is [Linear Recurrences](https://gciruelos.com/linear-recurrences.html) and [Jordan normal form](https://en.wikipedia.org/wiki/Jordan_normal_form). \
+There is definitely a deeper connection between my solution and theirs, but I'm yet to think that through.
 
 Anyway, this is all I wanted to tell, thank you for reading!
