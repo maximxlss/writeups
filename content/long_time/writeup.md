@@ -120,7 +120,7 @@ $$
 If we (similarly to lateralus!) focus on $x_i^n$, this turns into a linear system again. Except in lateralus, the resulting discrete log was in $\mathbb{Z}_{p^2}$, which allowed to calculate it efficiently.
 This time, the problem is in $\mathbb{Z}_{p}$ (and $p-1$ isn't smooth), so it's practically unsolvable. So no luck, huh...
 ### Not so fast!
-Actually, if the coefficients were random, that would've been true. But in reality, I lied to you. In this task the coefficients are special: there is a double root for the characteristic polynomial. That makes the closed form a bit different (let $x_1$ be the double root):
+Actually, if the coefficients were random and the roots would've been all distinct, that would've been true. But in reality, I lied to you. In this task the coefficients are special: there is a double root for the characteristic polynomial. That makes the closed form a bit different (let $x_1$ be the double root):
 $$
 f(n)=c_1x_1^n+c_2nx_1^n+\cdots+c_kx_{k-1}^n
 $$
