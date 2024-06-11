@@ -1,6 +1,6 @@
 ---
 title: Mips (Akasec CTF 2024; rev)
-date: 2024-06-07
+date: 2024-06-11
 ---
 > Author: miyako
 > check out my 16 star pb (note: you need ares to run the rom properly)
