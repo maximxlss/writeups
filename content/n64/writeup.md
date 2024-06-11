@@ -6,7 +6,7 @@ date: 2024-06-07
 > check out my 16 star pb (note: you need ares to run the rom properly)
 
 ### N64 chall??
-We are given a file called [`chall.z64`](./chall.z64). With a quick google search, you can find out that this is the file extension for Nintendo 64 ROMs, and that Ares, mentioned in the chall's description, is an emulator for N64. The console is based on MIPS architecture, whose name is present in the chall's title. Next step is to [download Ares](https://ares-emu.net/download) and set up the keymap (Settings > Input).
+We are given a file called [`chall.z64`](https://github.com/maximxlss/writeups/blob/v4/content/n64/chall.z64). With a quick google search, you can find out that this is the file extension for Nintendo 64 ROMs, and that Ares, mentioned in the chall's description, is an emulator for N64. The console is based on MIPS architecture, whose name is present in the chall's title. Next step is to [download Ares](https://ares-emu.net/download) and set up the keymap (Settings > Input).
 
 Let's run[^1] the ROM:
 ![[Pasted image 20240607234838.png]]
