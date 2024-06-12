@@ -62,7 +62,7 @@ e = (ww[0] - vv[0]/vv[1]*ww[1])*g/ww[1]
 e = int(e)
 ```
 
-Решение представлено на языке [Python3](exploit/exploit.py).
+Решение представлено на языке [python3](exploit/exploit.py).
 
 
 ### Флаг
