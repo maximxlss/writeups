@@ -6,7 +6,7 @@ date: 2024-06-11
 > check out my 16 star pb (note: you need ares to run the rom properly)
 
 ### N64 chall??
-We are given a file called [`chall.z64`](https://github.com/maximxlss/writeups/blob/v4/content/n64/chall.z64). With a quick google search, you can find out that this is the file extension for Nintendo 64 ROMs, and that Ares, mentioned in the chall's description, is an emulator for N64. The console is based on MIPS architecture, whose name is present in the chall's title. Next step is to [download Ares](https://ares-emu.net/download) and set up the keymap (Settings > Input).
+We are given a file called [`chall.z64`](https://github.com/maximxlss/writeups/blob/v4/content/n64/chall.z64). With a quick google search, you can find out that `z64` is the file extension for Nintendo 64 ROMs, and that Ares, mentioned in the chall's description, is an emulator for N64. The console is based on MIPS architecture, whose name is present in the chall's title. Next step is to [download Ares](https://ares-emu.net/download) and set up the keymap (Settings > Input).
 
 Let's run[^1] the ROM:
 ![[Pasted image 20240607234838.png]]
@@ -18,9 +18,9 @@ The decomplication is horrific, but the trick is to skip straight to the importa
 Here is obviously the point it decides if your key is wrong or not. If you look into `FUN_80010ed8`, it seems similar to `strcmp`, even. So let's look at what it compares. Seemingly, it's the data at addresses `0xFFFFFFFF800280b0` and `0xFFFFFFFF800270c8`. Those addresses look really weird for N64. The way you can get around that is trial and error, with the help from Ares' toolset.
 ### No debugger needed
 The Ares emulator (like most old console emulators) supports viewing and modifying memory contents of the virtual console. To do that, go to Tools > Memory (see how the addresses are small?). There are multiple views, corresponding to ROM, RAM, etc. You can go to the Memory Map in Ghidra to see, that the adresses are, umm, aren't even in any segment??? What is going on?
-Actually, I still have no idea, probably something weird about the plugin. But the thing is, Ghidra is confused. If you just try to infer what address you _actually_ need to check, you will end up with `0x280b0` and `0x270c8`, which is in multiple ways weird, but works.
+Actually, I still have no idea, probably something weird about the plugin. But the thing is, Ghidra is confused. If you just try to infer what address you _actually_ need to check, you will end up with `0x280b0` and `0x270c8` (original addresses truncated), which is in multiple ways weird, but works.
 It's not hard to see that `0x280b0` contains the input string (encoded) and `0x270c8` contains the expected string. You can input all the keys and see what bytes they are encoded into, after which you can decode the password:
-```Python
+```python
 values = bytes.fromhex("05020901140a190f07040b0c03") # copied from input memory
 # after entering the corresponding buttons
 buttons = ["L", "U", "R", "D", "CL", "CU", "CR", "CD", "B", "A", "LR", "RR", "Z"]
