@@ -9,6 +9,7 @@ date: 2024-06-03
 
 > Author: Inssurg3nt
 > One of the residents, ignoring all the restrictions, ran this script back in 1987, when he moved to city Z, and finally it completed execution and displayed the result! However, he forgot to display the key...
+
 Task files: [`give`](https://github.com/maximxlss/writeups/tree/v4/content/long_time/give)
 Solve script: [`solve.py`](https://github.com/maximxlss/writeups/blob/v4/content/long_time/solve.py)
 ### Truly a long time

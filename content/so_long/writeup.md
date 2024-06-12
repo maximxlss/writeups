@@ -4,6 +4,7 @@ date: 2024-06-12
 ---
 > Author: hel-makh
 > How long will it take you to escape the maze? Find the shortest path to the exit of the maze.
+
 Solve script: [./solve.py](https://github.com/maximxlss/writeups/content/so_long/solve.py)
 
 ### Time for programming
