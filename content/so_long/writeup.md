@@ -5,7 +5,7 @@ date: 2024-06-12
 > Author: hel-makh
 > How long will it take you to escape the maze? Find the shortest path to the exit of the maze.
 
-Solve script: [./solve.py](https://github.com/maximxlss/writeups/content/so_long/solve.py)
+Solve script: [./solve.py](https://github.com/maximxlss/writeups/blob/v4/content/so_long/solve.py)
 
 ### Time for programming
 Let's see the netcat intro:
@@ -133,7 +133,7 @@ for _from, _to in pairwise(path):
 	s.append(w)
 s = " ".join(s)
 ```
-Solved! See [solve script](https://github.com/maximxlss/writeups/content/so_long/solve.py).
+Solved! See [solve script](https://github.com/maximxlss/writeups/blob/v4/content/so_long/solve.py).
 ### Extra
 This concludes solving the task, but not my writeup, as I tested out the timings and was _not_ satisfied with computing time close to IO expenses, so I took that as a perfect opportunity to try applying [Numba](https://numba.pydata.org/). Numba is an awesome framework, opening up both optimized cpu and _gpu (!)_ support _without leaving python!_
 The most magical part about is just how easy it is to apply the Numba JIT and make your code run on par with compiled binaries. We just take the slowest lines of code and bring them out into a separate function, with a magic decorator:
