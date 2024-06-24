@@ -9,7 +9,7 @@ files: [link](https://github.com/google/google-ctf/tree/main/2024/quals/misc-onl
 Looking at the challenge code, we can see that it checks the bash code you've entered for redirections and any invocations besides `echo`. This sounds like a solid defence, even more so when you try and bypass that normally with other features of bash ([here](https://www.gnu.org/software/bash/manual/bash.html) is a complete reference). Actually, something seems strange...
 ### bash-parser
 By experiment (or if you went over into the repo and read the issues in there) it's not hard to notice that the parser is very much flawed. There are many strings it fails to parse, although it's not clear yet how to abuse that.
-If you go through the issues or try to figure out why certain strings don't parse, you might notice that it doesn't recognize escaped parentheses as escaped (this is also true for VS Code tokenizer and tokenizer used for rendering this page):
+If you go through the issues or try to figure out why certain strings don't parse, you might notice that it doesn't recognize escaped parentheses as escaped (this is also true for VS Code tokenizer btw):
 ```bash
 echo $(\) ls )
 ```
