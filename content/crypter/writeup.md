@@ -29,7 +29,7 @@ This is the only non-deterministic input into the prng, so it's not that hard to
 Sadly it took me some time to notice this stuff (I was blinded by the other stuff), so we lost quite a lot because of this vuln.
 
 ### The hard part
-Now we get to the fun stuff, basically no one found the other, intended, vuln. There are a couple of suspicious oversights you can notice in the code:
+Now we get to the fun stuff; basically no one but me found the other, intended, vuln. There are a couple of suspicious oversights you can notice in the code:
 - `mpz_class r = random_integer(32);` - The `r` value is not as long as `n` but rather half as long. Sadly, I did not find this fact useful in any way.
 - Errors seem to be returned to the user, could've been useful but in no way here.
 - The message is _small_, only 128 bits. Absolutely tiny in comparison with the other parameters.
