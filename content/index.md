@@ -10,3 +10,4 @@ title: Writeup dump
 | [Mips](./n64/writeup) | Akasec CTF | WWF | reverse | Nintendo 64 memory reading |
 | [so_long](./so_long/writeup) | Akasec CTF | WWF | ppc | Maze shortest path with Numpy, accelerated by Numba |
 | [OnlyEcho](./onlyecho/writeup) | Google CTF | xls team | jail | Jailbreak from flawed bash parser |
+| [Crypter](./crypter/writeup) | Russian CTF Cup | 4Ray | A/D, crypto | Paillier with missing modulo |
