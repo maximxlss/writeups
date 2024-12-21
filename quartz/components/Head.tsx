@@ -29,6 +29,7 @@ export default (() => {
             <link rel="stylesheet" href={googleFontHref(cfg.theme)} />
           </>
         )}
+        <meta name="google-site-verification" content="pbnTGEx8ZswE2Qb1EjxY92zof4z80lrBKi2iPgc_Nfk" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
