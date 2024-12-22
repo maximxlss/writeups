@@ -45,13 +45,16 @@ The event was nearing it's end. I went to take a break, after that I sat down an
 In the end, here's a direct path to solution:
 - Notice how the encoded message takes the following form: $\text{mod}((1 + n)^m, n^2) \cdot \text{mod}(r^n, n^2)$.
 - According to the main idea of Paillier, we can rewrite the first part like this: $\text{mod}(1 + nm, n^2) \cdot \text{mod}(r^n, n^2)$.
-- Notice how $1 + nm < n$, so we can further simplify to $(1 + nm) \cdot \text{mod}(r^n, n^2)$.
+- Notice how $1 + nm < n^2$, so we can further simplify to $(1 + nm) \cdot \text{mod}(r^n, n^2)$.
 - Now, let's rename the other multiplier to just $R$; we get $(1 + nm) \cdot R$.
+- Polynomial $R+nmR-ct$ then has a root $(m_0, R_0)$ with $m_0$ ~ 128 bits and $R_0$ ~ 4096 bits. Looking at [the paper](http://www.crypto-uni.lu/jscoron/publications/bivariate.pdf) for the infamous Coron's simplification of Coppersmith method, we see that $W$ is maximized for the constant coefficient $ct$ with about 6370 bits while $XY$ ~ 4224 bits only - much smaller than $W$. Given the total degree being 1, this allow us to find the root in polynomial time with the method.
+
+I simplified the path after I researched when exactly the method is applicable here, though this way it's quite a bit slower. Here's the extra part I implemented on the ctf: 
 - Notice how $\text{mod}((1 + nm) \cdot R, n) = \text{mod}(R, n)$, call it $e$. Then you can express $R$ as $kn + e$ for some $k$.
-- Look at the resulting expression: $(1 + nm)(kn + e)=kmn^2 + kn + emn + e$. $n$ and $e$ are known, $k$ and $m$ are only about 2200 bits total, when the value we get is about 6000 bits. This hints at possible Coppersmith method usage; as it turns out, it works!
+- Look at the resulting expression: $(1 + nm)(kn + e)=kmn^2 + kn + emn + e$. The polynomial still has total degree 1 and $W$ ~ 6370 bits, but the bounds went down drasctially to 2176 bits. This makes the solver almost instant, much increasing the attack speed.
 
 ### The other part
-The exploit setup is also interesting:
+The exploit (written in haste) setup is also kind of interesting:
 - First, you need to install gRPC and generate the stubs. More info on that in the [official docs](https://grpc.io/docs/languages/python/quickstart/).
 - The exploit requires sagemath too. That's not enough still: it only runs from inside the [crypto-attacks repository](https://github.com/jvdsn/crypto-attacks) since I have no idea how Coppersmith's method works exactly, so I'm using the implementation smart people published.
 - This how the last-minute exploit looks like:
