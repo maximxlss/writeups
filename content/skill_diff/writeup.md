@@ -13,7 +13,7 @@ Greetings! After the sphinx challenge from Google CTF 2025, I took interest in d
 ### The challenge
 The challenge includes a couple of files. This is due to the distribution including both the optimized C code as well as a SageMath file. Having a fast implementation allows the input limit on the remote to be a whopping 60 MB, from which (spoiler alert) I used a suprisingly little amount of 64 KB.
 
-I'll be using Python with SageMath. My code, edited and expanded from `chall.sage`, can be found [here](https://github.com/maximxlss/writeups/tree/v4/content/solve_diff/solve.py).
+I'll be using Python with SageMath. My code, edited and expanded from `chall.sage`, can be found [here](https://github.com/maximxlss/writeups/tree/v4/content/skill_diff/solve.py).
 
 I will index everything from 0. Let's also define $\mathbf{e}_i$ by $\mathbf{e}_i[j]=\begin{cases}1 & j=i \\ 0 & \text{otherwise}\end{cases}$.
 
