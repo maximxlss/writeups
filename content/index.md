@@ -11,5 +11,9 @@ title: Writeup dump
 | [so_long](./so_long/writeup) | Akasec CTF | WWF | ppc | Maze shortest path with Numpy, accelerated by Numba |
 | [OnlyEcho](./onlyecho/writeup) | Google CTF | xls team | jail | Jailbreak from flawed bash parser |
 | [Crypter](./crypter/writeup) / [русская версия](./crypter/writeup_ru) | Russian CTF Cup | 4Ray | A/D, crypto | Paillier with missing modulo |
-| [Skill Diff](./skill_diff/writeup.md) | L3akCTF 2025 | WWF | crypto | Optimized differential crypto |
-| [The Field of Wonders](field_of_wonders/writeup.md) | PSUTI CTF 2025 | Labubu228 | crypto | Poly1305 key multicollisions |
+
+#### 2025
+| Task | Event | Team | Category | Notes |
+|-|-|-|-|-|
+| [Skill Diff](./skill_diff/writeup.md) | L3akCTF | WWF | crypto | Optimized differential crypto |
+| [The Field of Wonders](field_of_wonders/writeup.md) | PSUTI CTF | Labubu228 | crypto | Poly1305 key multicollisions |
