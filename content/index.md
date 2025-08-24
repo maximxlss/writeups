@@ -2,7 +2,7 @@
 title: Writeup dump
 ---
 - Author: maximxls
-- Teams: xls team, World Wide Flags
+- Teams: LCD, World Wide Flags
 #### 2024
 | Task | Event | Team | Category | Notes |
 |-|-|-|-|-|
