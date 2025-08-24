@@ -12,3 +12,4 @@ title: Writeup dump
 | [OnlyEcho](./onlyecho/writeup) | Google CTF | xls team | jail | Jailbreak from flawed bash parser |
 | [Crypter](./crypter/writeup) / [русская версия](./crypter/writeup_ru) | Russian CTF Cup | 4Ray | A/D, crypto | Paillier with missing modulo |
 | [Skill Diff](./skill_diff/writeup.md) | L3akCTF 2025 | WWF | crypto | Optimized differential crypto |
+| [The Field of Wonders](field_of_wonders/writeup.md) | PSUTI CTF 2025 | Labubu228 | crypto | Poly1305 key multicollisions |
