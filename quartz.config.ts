@@ -11,11 +11,9 @@ const config: QuartzConfig = {
     pageTitle: "📝 Writeup dump",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
+    analytics: null,
     locale: "en-US",
-    baseUrl: "maximxlss.github.io/writeups",
+    baseUrl: "writeups.xls.msk.ru",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
