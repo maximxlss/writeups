@@ -125,6 +125,12 @@ We then just do a kind of binary search on the keys and find the right one in at
 ### Afterthoughts
 I'm pretty sure this solution is quite a bit more complicated than it has to be, but I have outlined a very general and quite powerful technique for constructing polynomials with constraints, so I hope this is still helpful.
 
+Here are articles linked by the author:
+- https://www.kryptoslogic.com/blog/2021/01/faster-poly1305-key-multicollisions/
+- https://eprint.iacr.org/2020/1491.pdf
+
+I didn't have time to read those properly, but it does seem like the solution there is a bit different. You might want to check out those too!
+
 Thank you for reading!
 
 [^1]: Personally, I'm always associating this trick with the Coppersmith's method. The steps after (in turning polynomial multiplication into matrix-vector multiplcation) are also similar.
