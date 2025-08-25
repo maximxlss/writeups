@@ -15,7 +15,15 @@ files: [here](https://github.com/maximxlss/writeups/tree/v4/content/field_of_won
 
 Hello! Welcome to my writeup on a very interesting challenge I have solved at PSUTI CTF 2025. This challenge is primarily about the XChaCha20-Poly1305 scheme, with the exploit using linear algebra and lattices. If you like that stuff, you will probably enjoy this article.
 
-Before heading straight into it, I want to thank the author for this challenge, I have had much fun solving it. 
+Before heading straight into it, I want to thank the author for this challenge, I have had much fun solving it.
+
+
+> [!tldr]- TLDR
+> - Have to forge a ciphertext matching multiple keys for Poly1305 to binary search for the passphrase.
+> - Turns the problem into polynomial interpolation with restricted coefficients.
+> - Solve that with a bunch of linear algebra and lattice CVP.
+> - More on that in [[#Constructing polynomials with constraints on the coefficients]]
+
 
 ### The challenge
 I won't get into the details on the task's code, let's get straight into the core problem we need to solve:
@@ -87,6 +95,14 @@ This means we need some more advanced machinery to satisfy all the constraints.
 > This means there is one additional fixed coefficient, equal to $\text{AAD len}\,||\,\text{CT len}$.
 
 ### Constructing polynomials with constraints on the coefficients
+
+> [!TLDR]- TLDR
+> - First do normal interpolation then find a polynomial to add with zeros at the important points.
+> - Enumerating polynomials with given zeros is easily formulated as a matrix-vector multiplication.
+> - Find a polynomial with some exactly matching coefficients with normal linear algebra.
+> - Find a polynomial to add to this one with close to needed coefficients with a lattice CVP algorithm.
+
+
 Let's formalize the problem. Let's assume we already have a polynomial $p(x)$ (`base_poly` in code, which we get from the simple interpolation) and a set of points $\{x_i\}$ (`points` in code), and we want to _modify_ the polynomial to make it fit the constraints while not changing it's value at each $x_i$.
 
 Let's then formulate it like this: find a polynomial $d(x)$ such that $d(x_i)=0$ for each point and $p(x) + d(x)$ satisfies the constraints. Obviously, $p(x) + d(x)$ matches $p(x)$ at the points $\{x_i\}$.
